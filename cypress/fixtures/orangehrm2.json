@@ -1,0 +1,21 @@
+[
+    {
+        "scenario" : "Valid Login",
+        "username" : "Admin",
+        "password" : "admin123",
+        "expected" : "Dashboard"
+    },
+
+    {
+        "scenario" : "invalid username",
+        "username" : "wrongusn",
+        "password" : "admin123",
+        "expected" : "Invalid credentials"
+    },
+    {
+        "scenario" : "invalid password",
+        "username" : "Admin",
+        "password" : "wrongpass123",
+        "expected" : "Invalid credentials"
+    }
+]

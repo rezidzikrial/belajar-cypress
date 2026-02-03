@@ -1,0 +1,15 @@
+{
+    
+    "validUser" : {
+    "username" : "Admin",
+    "password" : "admin123",
+    "expected" : "Dashboard"
+    },
+
+    "invalidUser" : {
+    "username" : "Admin",
+    "password" : "admin123",
+    "expected" : "Dashboard"
+    }
+
+}
