@@ -5,7 +5,6 @@
         "password" : "admin123",
         "expected" : "Dashboard"
     },
-
     {
         "scenario" : "invalid username",
         "username" : "wrongusn",

@@ -21,8 +21,8 @@ describe('Test Suite', () => {
 
                     cy.url().should('include', '/dashboard')
 
-                    cy.get(".oxd-userdropdown-tab").click()
-                    cy.get(":nth-child(4) > .oxd-userdropdown-link").click()
+                    cy.get(".oxd-userdropdown-tab").click() //logout
+                    cy.get(":nth-child(4) > .oxd-userdropdown-link").click() //logout
                 }else{
                     cy.get(".oxd-text.oxd-text--p.oxd-alert-content-text").should('be.visible', data.expected)
                     cy.url().should('include', '/login')

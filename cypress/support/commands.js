@@ -27,9 +27,49 @@ const BASEURL = 'https://www.saucedemo.com/'
 
 
     Cypress.Commands.add('getIframe', (iframe) => {
-            return cy.get(iframe)
-
+        return cy.get(iframe)
         .its('0.contentDocument.body')
         .should('not.be.empty')
         .then(cy.wrap);
     });
+
+
+    //custom command link button
+
+    Cypress.Commands.add('clickLink', (label) => {
+        cy.get('a').contains(label).click()
+
+    })
+
+    //Over write contains()
+    Cypress.Commands.overwriteQuery('contains', (originalFn, subject, filter, text, options = {}) => {
+        options.matchCase = false
+
+        // kalau dipanggil sebagai cy.contains()
+        if (subject === undefined) {
+        return originalFn(filter, text, options)
+        }
+
+        // kalau dipanggil sebagai cy.get().contains()
+        return originalFn(subject, filter, text, options)
+  })
+
+//   Cypress.Commands.add('mwLogin', (username, password) => {
+
+//         cy.get("input[placeholder='Username']").should('be.visible').type(username)
+//         cy.get("input[placeholder='Password']").should('be.visible').type(password)
+//         cy.get("button[type='submit']").should('be.visible').click()
+
+
+//   })
+
+//custom command login with using fixtures
+  Cypress.Commands.add('mwLogin', () => {
+    cy.fixture('orangehrmLogin').then((user)=>{
+        cy.get("input[placeholder='Username']").should('be.visible').type(user.username)
+        cy.get("input[placeholder='Password']").should('be.visible').type(user.password)
+        cy.get("button[type='submit']").should('be.visible').click()
+
+});
+});
+
