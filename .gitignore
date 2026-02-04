@@ -6,3 +6,6 @@ cypress/screenshots/
 
 # Env file
 .env
+
+cypress/Swag-Labs/
+cypress/automationteststore/
