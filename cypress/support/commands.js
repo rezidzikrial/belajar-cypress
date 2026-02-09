@@ -23,6 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+/// <reference types="cypress"/>
 const BASEURL = 'https://www.saucedemo.com/'
 
 
@@ -64,11 +65,17 @@ const BASEURL = 'https://www.saucedemo.com/'
 //   })
 
 //custom command login with using fixtures
-  Cypress.Commands.add('mwLogin', () => {
+  Cypress.Commands.add('mwLogin', (username, password) => {
     cy.fixture('orangehrmLogin').then((user)=>{
-        cy.get("input[placeholder='Username']").should('be.visible').type(user.username)
-        cy.get("input[placeholder='Password']").should('be.visible').type(user.password)
+
+         // DEBUG
+        // cy.log('USERNAME:', username)
+        // cy.log('PASSWORD:', password)
+
+        cy.get("input[placeholder='Username']").should('be.visible').type(username)
+        cy.get("input[placeholder='Password']").should('be.visible').type(password)
         cy.get("button[type='submit']").should('be.visible').click()
+        cy.wait(5000)
 
 });
 });

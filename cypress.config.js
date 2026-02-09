@@ -7,6 +7,11 @@ module.exports = defineConfig({
     },
     specPattern : "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}" //untuk fokus pada pengujian di folder/file tertentu menggunakan cypress run
   },
+    screenshotOnRunFailure: true,
+    video: true,
+    videosFolder: 'cypress/videos',
+    screenshotsFolder: 'cypress/screenshots',
+    trashAssetsBeforeRuns: true,
 
   env: {
 

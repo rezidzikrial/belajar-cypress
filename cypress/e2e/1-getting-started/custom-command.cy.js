@@ -41,26 +41,31 @@ describe('Learn Custom Command', () => {
     });
 
     //login with usig custom command & fixtures with loop 3 data
-    it('Validate Login using Custom Command & with fixtures', () => {
+    it.only('Validate Login using Custom Command & with fixtures', () => {
         cy.fixture('orangehrm2').then((users)=>{
 
         users.forEach((user) => {
 
         cy.mwLogin(user.username, user.password);
 
-        cy.get('.oxd-topbar-header-breadcrumb>h6[class="oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module"]').should('be.visible').should('have.text', user.expected)
+        if(user.expected === 'Dashboard'){
+            cy.get('.oxd-topbar-header-breadcrumb>h6[class="oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module"]').should('be.visible').should('have.text', user.expected)
 
-        cy.url().should('include', '/dashboard')
+            cy.url().should('include', '/dashboard')
 
-        cy.get(".oxd-userdropdown-tab").click() //logout
-        cy.get(":nth-child(4) > .oxd-userdropdown-link").click() //logout
+            cy.get(".oxd-userdropdown-tab").click() //logout
+            cy.get(":nth-child(4) > .oxd-userdropdown-link").click() //logout
+        }else{
+            cy.get(".oxd-text.oxd-text--p.oxd-alert-content-text").should('be.visible', user.expected)
+            cy.url().should('include', '/login')
+        }
 
             });
         });
     });
 
     //login with usig custom command & fixtures with 1 data in object
-    it.only('Validate Login using Custom Command & with fixtures', () => {
+    it('Validate Login using Custom Command & with fixtures', () => {
         cy.fixture('orangehrmLogin').then((user)=>{
         
         // cy.log(JSON.stringify(user))
