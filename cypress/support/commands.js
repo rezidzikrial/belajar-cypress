@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 /// <reference types="cypress"/>
 const BASEURL = 'https://www.saucedemo.com/'
-
+import Login from "../PageObjects/LoginPage";
 
     Cypress.Commands.add('getIframe', (iframe) => {
         return cy.get(iframe)
@@ -79,4 +79,12 @@ const BASEURL = 'https://www.saucedemo.com/'
 
 });
 });
+
+    Cypress.Commands.add('loginPomCc', (username, password) => {
+        const loginPage = new Login()
+
+        cy.fixture('orangehrm2').then((user)=> {
+            loginPage.login(username, password)
+        })
+    })
 
